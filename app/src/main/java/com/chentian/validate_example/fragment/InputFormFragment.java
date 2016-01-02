@@ -1,5 +1,6 @@
 package com.chentian.validate_example.fragment;
 
+import java.util.Arrays;
 import java.util.List;
 
 import android.os.Bundle;
@@ -16,8 +17,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 import com.chentian.validate_example.R;
-import com.chentian.validate_example.utils.ValidateUtils;
-import com.chentian.validate_example.utils.ViewUtils;
+import com.chentian.validate_example.validate.ValidateItemView;
+import com.chentian.validate_example.validate.ValidateItemViewCollection;
+import com.chentian.validate_example.validate.ValidateMode;
 
 /**
  * 用户基本信息输入页面
@@ -27,7 +29,7 @@ import com.chentian.validate_example.utils.ViewUtils;
 public class InputFormFragment extends Fragment {
 
   @Bind(R.id.input_name) TextView txtInputName;
-  @Bind(R.id.input_pinyin) TextView txtInputPinYin;
+  @Bind(R.id.input_pinyin) TextView txtInputPinyin;
   @Bind(R.id.input_email) TextView txtInputEmail;
   @Bind(R.id.radio_gender) RadioGroup radioGender;
   @Bind(R.id.radio_education) RadioGroup radioEducation;
@@ -36,6 +38,8 @@ public class InputFormFragment extends Fragment {
       R.id.checkbox_investment_target_2, R.id.checkbox_investment_target_3
   }) List<CheckBox> checkBoxInVestmentList;
   @Bind(R.id.btn_submit) Button btnSubmit;
+
+  private ValidateItemViewCollection validateItemViewCollection;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,80 +52,19 @@ public class InputFormFragment extends Fragment {
   }
 
   private void bindViews() {
-    txtInputName.setOnFocusChangeListener((v, hasFocus) -> {
-      if (!hasFocus) {
-        checkInputName();
-      }
-    });
-    txtInputPinYin.setOnFocusChangeListener((v, hasFocus) -> {
-      if (!hasFocus) {
-        checkInputPinYin();
-      }
-    });
-    txtInputEmail.setOnFocusChangeListener((v, hasFocus) -> {
-      if (!hasFocus) {
-        checkInputEmail();
-      }
-    });
+    validateItemViewCollection = new ValidateItemViewCollection(Arrays.asList(
+        new ValidateItemView.TextViewItem(txtInputName, new ValidateMode.Name(), R.string.input_name_error_tip),
+        new ValidateItemView.TextViewItem(txtInputPinyin, new ValidateMode.Pinyin(), R.string.input_pinyin_error_tip),
+        new ValidateItemView.TextViewItem(txtInputEmail, new ValidateMode.Email(), R.string.input_email_error_tip),
+
+        new ValidateItemView.RadioGroupItem(radioGender, R.string.input_gender_error_tip),
+        new ValidateItemView.RadioGroupItem(radioEducation, R.string.input_education_error_tip),
+        new ValidateItemView.CheckBoxItem(checkBoxInVestmentList, R.string.input_investment_target_error_tip)
+    ));
     btnSubmit.setOnClickListener(v -> {
-      if (checkInputName() && checkInputPinYin() && checkInputEmail() &&
-          checkGender() && checkEducation() && checkInvestmentTarget()) {
+      if (validateItemViewCollection.validate()) {
         Toast.makeText(getContext(), R.string.validate_success, Toast.LENGTH_SHORT).show();
       }
     });
-  }
-
-  private boolean checkInputName() {
-    if (ValidateUtils.checkName(txtInputName.getText().toString())) {
-      return true;
-    }
-
-    Toast.makeText(getContext(), R.string.input_name_error_tip, Toast.LENGTH_SHORT).show();
-    return false;
-  }
-
-  private boolean checkInputPinYin() {
-    if (ValidateUtils.checkPinyin(txtInputPinYin.getText().toString())) {
-      return true;
-    }
-
-    Toast.makeText(getContext(), R.string.input_pinyin_error_tip, Toast.LENGTH_SHORT).show();
-    return false;
-  }
-
-  private boolean checkInputEmail() {
-    if (ValidateUtils.checkEmail(txtInputEmail.getText().toString())) {
-      return true;
-    }
-
-    Toast.makeText(getContext(), R.string.input_email_error_tip, Toast.LENGTH_SHORT).show();
-    return false;
-  }
-
-  private boolean checkGender() {
-    if (ViewUtils.isRadioGroupSelected(radioGender)) {
-      return true;
-    }
-
-    Toast.makeText(getContext(), R.string.input_gender_error_tip, Toast.LENGTH_SHORT).show();
-    return false;
-  }
-
-  private boolean checkEducation() {
-    if (ViewUtils.isRadioGroupSelected(radioEducation)) {
-      return true;
-    }
-
-    Toast.makeText(getContext(), R.string.input_education_error_tip, Toast.LENGTH_SHORT).show();
-    return false;
-  }
-
-  private boolean checkInvestmentTarget() {
-    if (ViewUtils.isCheckBoxSelected(checkBoxInVestmentList)) {
-      return true;
-    }
-
-    Toast.makeText(getContext(), R.string.input_investment_target_error_tip, Toast.LENGTH_SHORT).show();
-    return false;
   }
 }
