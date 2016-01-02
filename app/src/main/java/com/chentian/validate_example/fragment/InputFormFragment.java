@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 import com.chentian.validate_example.R;
+import com.chentian.validate_example.utils.ValidateUtils;
 import com.chentian.validate_example.utils.ViewUtils;
 
 /**
@@ -72,51 +72,53 @@ public class InputFormFragment extends Fragment {
   }
 
   private boolean checkInputName() {
-    String name = txtInputName.getText().toString();
-    if (TextUtils.isEmpty(name) || name.length() <= 2) {
-      Toast.makeText(getContext(), R.string.input_name_error_tip, Toast.LENGTH_SHORT).show();
-      return false;
+    if (ValidateUtils.checkName(txtInputName.getText().toString())) {
+      return true;
     }
-    return true;
+
+    Toast.makeText(getContext(), R.string.input_name_error_tip, Toast.LENGTH_SHORT).show();
+    return false;
   }
 
   private boolean checkInputPinYin() {
-    if (TextUtils.isEmpty(txtInputPinYin.getText().toString())) {
-      Toast.makeText(getContext(), R.string.input_pinyin_error_tip, Toast.LENGTH_SHORT).show();
-      return false;
+    if (ValidateUtils.checkPinyin(txtInputPinYin.getText().toString())) {
+      return true;
     }
-    return true;
+
+    Toast.makeText(getContext(), R.string.input_pinyin_error_tip, Toast.LENGTH_SHORT).show();
+    return false;
   }
 
   private boolean checkInputEmail() {
-    if (TextUtils.isEmpty(txtInputEmail.getText().toString())) {
-      Toast.makeText(getContext(), R.string.input_email_error_tip, Toast.LENGTH_SHORT).show();
-      return false;
+    if (ValidateUtils.checkEmail(txtInputEmail.getText().toString())) {
+      return true;
     }
-    return true;
+
+    Toast.makeText(getContext(), R.string.input_email_error_tip, Toast.LENGTH_SHORT).show();
+    return false;
   }
 
   private boolean checkGender() {
-    if (ViewUtils.getRadioSelectedIndex(radioGender) < 0) {
-      Toast.makeText(getContext(), R.string.input_gender_error_tip, Toast.LENGTH_SHORT).show();
-      return false;
+    if (ViewUtils.isRadioGroupSelected(radioGender)) {
+      return true;
     }
-    return true;
+
+    Toast.makeText(getContext(), R.string.input_gender_error_tip, Toast.LENGTH_SHORT).show();
+    return false;
   }
 
   private boolean checkEducation() {
-    if (ViewUtils.getRadioSelectedIndex(radioEducation) < 0) {
-      Toast.makeText(getContext(), R.string.input_education_error_tip, Toast.LENGTH_SHORT).show();
-      return false;
+    if (ViewUtils.isRadioGroupSelected(radioEducation)) {
+      return true;
     }
-    return true;
+
+    Toast.makeText(getContext(), R.string.input_education_error_tip, Toast.LENGTH_SHORT).show();
+    return false;
   }
 
   private boolean checkInvestmentTarget() {
-    for (CheckBox checkBox : checkBoxInVestmentList) {
-      if (checkBox.isChecked()) {
-        return true;
-      }
+    if (ViewUtils.isCheckBoxSelected(checkBoxInVestmentList)) {
+      return true;
     }
 
     Toast.makeText(getContext(), R.string.input_investment_target_error_tip, Toast.LENGTH_SHORT).show();
