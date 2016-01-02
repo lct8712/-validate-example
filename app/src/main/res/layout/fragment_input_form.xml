@@ -8,9 +8,170 @@
     android:layout_height="match_parent"
     tools:context=".fragment.InputFormFragment">
 
+    <!-- 基本信息 -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input_name"
+            android:hint="@string/name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input_pinyin"
+            android:hint="@string/pinyin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input_email"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- 性别 -->
     <TextView
-        android:text="@string/app_name"
+        android:text="@string/gender"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <RadioGroup
+        android:id="@+id/radio_gender"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:text="@string/male"
+            android:checked="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+        <RadioButton
+            android:text="@string/female"
+            android:checked="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+    </RadioGroup>
+
+    <!-- 学历 -->
+    <TextView
+        android:text="@string/education"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RadioGroup
+        android:id="@+id/radio_education"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:text="@string/education_0"
+            android:checked="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+        <RadioButton
+            android:text="@string/education_1"
+            android:checked="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+        <RadioButton
+            android:text="@string/education_2"
+            android:checked="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+        <RadioButton
+            android:text="@string/education_3"
+            android:checked="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+    </RadioGroup>
+
+    <!-- 投资目标 -->
+    <TextView
+        android:text="@string/investment_target"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkbox_investment_target_0"
+            android:text="@string/investment_target_0"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_investment_target_1"
+            android:text="@string/investment_target_1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkbox_investment_target_2"
+            android:text="@string/investment_target_2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_investment_target_3"
+            android:text="@string/investment_target_3"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"/>
+
+    </LinearLayout>
+
+    <!-- 提交 -->
+    <Button
+        android:text="@string/submit"
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"/>
 
 </LinearLayout>
