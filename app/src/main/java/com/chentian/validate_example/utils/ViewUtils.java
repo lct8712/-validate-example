@@ -7,6 +7,7 @@ import android.widget.RadioGroup;
  *
  * @author chentian
  */
+@SuppressWarnings("unused")
 public class ViewUtils {
 
   private ViewUtils() {}
