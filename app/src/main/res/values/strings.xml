@@ -1,0 +1,35 @@
+<resources>
+  <string name="app_name">ValidateExample</string>
+
+  <string name="name">姓名</string>
+  <string name="pinyin">姓的拼音</string>
+  <string name="id_card_no">身份证号码</string>
+  <string name="email">电子邮箱</string>
+
+  <string name="gender">性别</string>
+  <string name="male">男</string>
+  <string name="female">女</string>
+  <string name="education">知识水平</string>
+  <string name="education_0">中学</string>
+  <string name="education_1">本科</string>
+  <string name="education_2">硕士</string>
+  <string name="education_3">博士</string>
+
+  <string name="investment_target">投资目标</string>
+  <string name="investment_target_0">资本增长</string>
+  <string name="investment_target_1">交易利润</string>
+  <string name="investment_target_2">投机</string>
+  <string name="investment_target_3">对冲</string>
+
+  <string name="input_name_error_tip">姓名不能为空，且不包含数字和字母</string>
+  <string name="input_pinyin_error_tip">拼音不能为空，且必须全是字母</string>
+  <string name="input_email_error_tip">请输入有效的电子邮箱地址</string>
+  <string name="input_id_card_error_tip">身份证位数不符</string>
+  <string name="input_gender_error_tip">请选择性别</string>
+  <string name="input_education_error_tip">请选择知识水平</string>
+  <string name="input_investment_target_error_tip">请选择投资目标</string>
+
+  <string name="submit">提交</string>
+  <string name="validate_success">校验成功</string>
+
+</resources>
