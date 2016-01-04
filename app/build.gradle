@@ -45,6 +45,10 @@ android {
     pickFirst 'META-INF/LGPL2.1'
     pickFirst '.readme'
   }
+
+  lintOptions {
+    abortOnError false
+  }
 }
 
 dependencies {
